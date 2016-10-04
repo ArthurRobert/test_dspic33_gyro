@@ -47,16 +47,19 @@ int main(void)
 
     PORTA = 0x0000;
 
-
-    writeSPI1('a');
+    PORTAbits.RA1 = 1;
     
     while(1)
     {
-        if( newData == 1){
+       // writeSPI1('a');;
+         writeSPI1('a');
+       // PORTAbits.RA0 = !PORTAbits.RA0;
+        
+       // if( newData == 1){
             
             
             
-        }
+       // }
         
         
     }

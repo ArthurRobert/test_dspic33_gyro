@@ -55,7 +55,7 @@
 #pragma config FCKSM = CSDCMD           // Clock Switching Mode bits (Both Clock switching and Fail-safe Clock Monitor are disabled)
 
 // FOSCSEL
-#pragma config FNOSC = FRC             // Oscillator Source Selection (Low-Power RC Oscillator (LPRC))
+#pragma config FNOSC = FRCDIVN             // Oscillator Source Selection (Low-Power RC Oscillator (LPRC))
 #pragma config PWMLOCK = ON             // PWM Lock Enable bit (Certain PWM registers may only be written after key sequence)
 #pragma config IESO = ON                // Two-speed Oscillator Start-up Enable bit (Start up device with FRC, then switch to user-selected oscillator source)
 

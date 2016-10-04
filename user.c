@@ -63,7 +63,7 @@ void initIO(){
     ANSELA = 0x0000;
     ANSELB = 0x0000;
     
-    TRISA = 0xfffe;
+    TRISA = 0xfffc;
     TRISB = 0xffff;
     TRISBbits.TRISB6 = 0;
     TRISBbits.TRISB7 = 0;
@@ -79,7 +79,7 @@ void initSPI(){
     SPI2STATbits.SPIEN = 0;
     
     // clean flag and init interrupt
-    SPI1BUF = 0;
+  //  SPI1BUF = 0;
     IFS0bits.SPI1IF = 0; 
     IEC0bits.SPI1IE = 0;
     IPC2bits.SPI1IP = 5;
@@ -108,12 +108,12 @@ void initSPI(){
     
     // clean status
     
-//    SPI1STATbits.SPISIDL = 0;
-//    SPI1STATbits.SPIBEC = 0b00;
-//    SPI1STATbits.SRMPT = 0;
-//    SPI1STATbits.SPIROV = 0;
-//    SPI1STATbits.SRXMPT = 0;
-//    SPI1STATbits.SISEL = 0b111;
+    SPI1STATbits.SPISIDL = 0;
+    SPI1STATbits.SPIBEC = 0b00;
+    SPI1STATbits.SRMPT = 0;
+    SPI1STATbits.SPIROV = 0;
+    SPI1STATbits.SRXMPT = 0;
+    SPI1STATbits.SISEL = 0b111;
 //    SPI1STATbits.SPIEN = 1;
     
     SPI1STAT = 0x0000;
@@ -125,18 +125,18 @@ void initSPI(){
     // restart spi1
     SPI1CON1bits.SSEN = 0;
     SPI1STATbits.SPIROV = 0;
-    SPI1STATbits.SPIEN = 1;
+ 
+    SPI1STATbits.SPIEN = 1; 
     
 }
 
 unsigned char writeSPI1(unsigned char data){
     
-PORTAbits.RA0 = 1;
-SPI1STAT = 0x0000;
-while(!SPI2STATbits.SPIRBF);
-PORTAbits.RA0 = 0;
+PORTAbits.RA0 = !PORTAbits.RA0;
+//SPI1STATbits.SPITBF = 0;
+//while(!SPI1STATbits.SPITBF);
 SPI1BUF = data;    
-while(!SPI2STATbits.SPIRBF);
+while(!SPI1STATbits.SPITBF);
 
 
 

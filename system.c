@@ -43,7 +43,9 @@ void ConfigureOscillator(void)
 #if 1
         /* Disable Watch Dog Timer */
         RCONbits.SWDTEN = 0;
-
+        
+      //  OSCCONbits.NOSC = 0b111;
+        CLKDIVbits.FRCDIV = 0b111;
         /* When clock switch occurs switch to Primary Osc (HS, XT, EC) */
       //  OSCCONbits.NOSC = 0b000;
         
